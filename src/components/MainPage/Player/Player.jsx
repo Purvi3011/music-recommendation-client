@@ -13,13 +13,13 @@ function Player() {
   const noSongImage = "https://cdn.pixabay.com/photo/2016/05/24/22/54/icon-1413583_960_720.png";
   useEffect(() => {
     if (currTrack) {
-      axios.post("http://localhost:3001/addMusicToListeningHistory", { currTrackId: currTrack?.id, currUserId: localStorage.getItem("currUserId") }).then(() => {
+      axios.post(`${process.env.REACT_APP_SERVER_URL}/addMusicToListeningHistory`, { currTrackId: currTrack?.id, currUserId: localStorage.getItem("currUserId") }).then(() => {
       }).catch(err => {
         console.log(err);
       })
     }
     else {
-      axios.get("http://localhost:3001/getLastListenedMusic?currUserId=" + localStorage.getItem("currUserId")).then(res => {
+      axios.get(`${process.env.REACT_APP_SERVER_URL}/getLastListenedMusic?currUserId=` + localStorage.getItem("currUserId")).then(res => {
         axios.get("https://saavn.me/songs?id=" + res.data.lastListenedMusic).then(data => {
           setCurrTrack(data.data.data[0]);
         })

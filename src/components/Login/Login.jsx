@@ -19,7 +19,7 @@ function Login() {
             alert("Invalid Inputs");
             return;
         }
-        axios.post("http://localhost:3001/login", { userLogin }).then((res) => {
+        axios.post(`${process.env.REACT_APP_SERVER_URL}/login`, { userLogin }).then((res) => {
             localStorage.setItem("token", res.data.accessToken);
             localStorage.setItem("userData", JSON.stringify({ username: res.data.userDeets.username, id: res.data.userDeets._id }))
             navigate("/home");

@@ -65,14 +65,14 @@ function Home() {
         setCurrTrack(currSong);
         setReccTrack(false);
         var spotifyData = {}
-        await axios.get(`http://localhost:3001/song-audio-features?songName=${currSong.name}`)
+        await axios.get(`${process.env.REACT_APP_SERVER_URL}/song-audio-features?songName=${currSong.name}`)
             .then(res => {
                 spotifyData = res.data;
             })
             .catch(err => {
                 console.log(err);
             })
-        await axios.post("http://localhost:3001/addMusic", {
+        await axios.post(`${process.env.REACT_APP_SERVER_URL}/addMusic`, {
             musicData: { ...currSong, ...spotifyData }
         }).then(res => {
             console.log(res);

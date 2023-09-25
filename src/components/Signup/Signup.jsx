@@ -27,7 +27,7 @@ function Signup() {
       return alert("Password should be have atleast five characters");
     }
     else {
-      await axios.post("http://localhost:3001/signup", { user })
+      await axios.post(`${process.env.REACT_APP_SERVER_URL}/signup`, { user })
         .then(() => {
           navigate("/login");
         }).catch(err => {

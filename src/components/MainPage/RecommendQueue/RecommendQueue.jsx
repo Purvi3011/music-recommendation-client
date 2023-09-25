@@ -10,7 +10,7 @@ function RecommendQueue() {
 
     useEffect(() => {
         if (!reccTrack) {
-            axios.get('http://localhost:5000/recommend', { params: { curr_user_id: localStorage.getItem("currUserId"), song_name: currTrack?.name } })
+            axios.get(`${process.env.REACT_APP_FLASK_URL}/recommend`, { params: { curr_user_id: localStorage.getItem("currUserId"), song_name: currTrack?.name } })
                 .then(response => {
                     setUpNextTracks(response.data);
                     console.log(response.data);

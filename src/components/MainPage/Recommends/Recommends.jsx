@@ -19,7 +19,7 @@ function Recommends() {
       if (currTrack) {
         songName = he.decode(currTrack?.name);
       }
-      axios.get('http://localhost:5000/recommend', { params: { curr_user_id: localStorage.getItem("currUserId"), song_name: songName } })
+      axios.get(`${process.env.REACT_APP_FLASK_URL}/recommend`, { params: { curr_user_id: localStorage.getItem("currUserId"), song_name: songName } })
         .then(response => {
           setRecommendations(response.data);
           setIsLoading(false);
